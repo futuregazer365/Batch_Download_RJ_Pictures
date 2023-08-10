@@ -8,7 +8,7 @@ import requests
 import re
 import os
 from bs4 import BeautifulSoup
-
+import time
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyMainWindow, self).__init__(parent)  # 初始化父类
@@ -67,6 +67,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                 accessedurl = re.sub(r"01052122", rj_number, self.url, flags=re.IGNORECASE)  # 替换 RJ 号，不区分大小写
                 filename = item_text + ".jpg"
                 # 发起 GET 请求获取网页内容
+                time.sleep(1)
                 response = requests.get(accessedurl)
                 html = response.text
                 # 使用BeautifulSoup解析网页内容
